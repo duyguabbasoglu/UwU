@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('default-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    text-align: center;
+}
+
+header {
+    background: rgba(50, 50, 50, 0.8);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
+.bum {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.character {
+    width: 40px;
+    height: 40px;
+    background: url('character.png') no-repeat center;
+    background-size: contain;
+}
+
+
+.falcibaci {
+    background: #222;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+
+nav {
+    background: rgba(30, 30, 30, 0.9);
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    background: #444;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: #666;
+}
+
+
+
+/* MAIN */
+main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+section {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+
+.gunluk-cumle {
+    font-style: italic;
+    background: #333;
+}
+
+
+footer {
+    background: rgba(20, 20, 20, 0.8);
+    padding: 15px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.keyboard {
+    margin-top: 20px;
+    padding: 20px;
+    background: #000;
+}
+
+@media (max-width: 768px) {
+    body {
+        background-size: auto;
+    }
+}
