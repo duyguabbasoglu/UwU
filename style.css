@@ -1,114 +1,157 @@
-* {
+body {
+    font-family: "Poppins", sans-serif;
+    background: url('./images/background.gif') no-repeat center center/cover;
+    color: white;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: url('default-bg.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: white;
     text-align: center;
+    overflow-x: hidden;
 }
 
-header {
-    background: rgba(50, 50, 50, 0.8);
-    padding: 20px;
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 20px;
+    position: relative;
+    width: 90%;
+    margin: auto;
 }
 
-header h1 {
-    font-size: 2rem;
+#nickname {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff79c6;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute;
+    left: 20px;
 }
 
-.bum {
+.uwu-logo {
+    width: 90px;
+    height: auto;
+    position: absolute;
+    right: 20px;
+}
+
+.profile-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 10px;
+    position: relative;
 }
 
-.character {
-    width: 40px;
-    height: 40px;
-    background: url('character.png') no-repeat center;
-    background-size: contain;
+.profile-pic {
+    width: 130px;
+    height: 130px;
+    border-radius: 10px;
+    border: 3px solid #ff79c6;
+    position: relative;
 }
 
-
-.falcibaci {
-    background: #222;
-    padding: 15px;
-    margin-top: 10px;
-}
-
-
-nav {
-    background: rgba(30, 30, 30, 0.9);
-    padding: 10px;
-}
-
-nav ul {
-    list-style: none;
+.navbar ul {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 25px;
+    list-style: none;
+    padding: 15px;
+    background-color: rgba(255, 121, 198, 0.9);
+    border-radius: 10px;
+    width: 80%;
+    margin: auto;
 }
 
-nav a {
+.navbar ul li a {
     text-decoration: none;
     color: white;
-    padding: 10px 15px;
-    background: #444;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 12px 18px;
     border-radius: 5px;
     transition: 0.3s;
 }
 
-nav a:hover {
-    background: #666;
+.navbar ul li a:hover {
+    background-color: white;
+    color: #ff79c6;
 }
 
-
-
-/* MAIN */
-main {
-    padding: 20px;
+.main {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
 }
 
-section {
-    background: rgba(255, 255, 255, 0.1);
+.duygufali {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 80%;
+}
+
+#duygubar, #falcibaci {
+    background-color: #ffbfd3;
     padding: 15px;
     border-radius: 10px;
+    width: 50%;
+    color: #660033;
+    font-weight: bold;
 }
 
-
-.gunluk-cumle {
-    font-style: italic;
-    background: #333;
-}
-
-
-footer {
-    background: rgba(20, 20, 20, 0.8);
-    padding: 15px;
-    margin-top: 20px;
+.spotifyhigh {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 20px;
+    width: 80%;
+    margin: auto;
+}
+
+.spotify, .highscore {
+    background-color: #ff92a1;
+    padding: 15px;
+    border-radius: 10px;
+    width: 50%;
+    color: #660033;
+    font-weight: bold;
+}
+
+#visitor {
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #ffeb99;
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+    width: 60%;
 }
 
 .keyboard {
-    margin-top: 20px;
-    padding: 20px;
-    background: #000;
+    margin: 30px auto;
+    padding: 15px;
+    width: 80%;
 }
 
-@media (max-width: 768px) {
-    body {
-        background-size: auto;
-    }
+.keyboard img {
+    width: 100%;
+    max-width: 600px;
 }

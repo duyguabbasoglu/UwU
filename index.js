@@ -1,56 +1,100 @@
-document.addEventListener("DOMContentLoaded", () => {
-
-    // Günlük Rastgele Cümle
-    const dailySentenceElement = document.querySelector(".gunluk-cumle p");
-    const sentences = [
-        "Bugün harika şeyler olabilir!",
-        "Kendine iyi bakmayı unutma.",
-        "Hayat bazen saçma ama komik değil mi?",
-        "Bir kedi görmek sana uğur getirebilir.",
-        "Yeni bir şey öğrenmenin tam zamanı!",
-        "Belki de bugün gelecekte hatırlayacağın günlerden biri olacak!"
+document.addEventListener("DOMContentLoaded", function() {
+    const messages = [
+        "bir patates hakkında düşündü.",
+        "kahvesine tuz attı ama pişman olmadı.",
+        "pizzanın ananaslı olup olmaması konusunda içsel bir savaş verdi.",
+        "internette bir şey ararken 3 saat sonra bambaşka bir konudaydı.",
+        "kendine spora başlayacağını söyledi ve hemen unuttu.",
+        "bu sitenin ne olduğunu bilmeden girdi ve hala anlamaya çalışıyor.",
     ];
-    dailySentenceElement.textContent = sentences[Math.floor(Math.random() * sentences.length)];
+    document.getElementById("visitormesg").innerText = `Senden önce buraya gelen kişi ${messages[Math.floor(Math.random() * messages.length)]}`;
 
-    // Dinamik Klavye Efekti
-    const keyboard = document.querySelector(".keyboard");
-    const keySounds = ["click1.mp3", "click2.mp3", "click3.mp3"]; // Örnek ses dosyaları
-
-    document.addEventListener("keydown", (event) => {
-        if (!event.key.match(/^[a-zA-Z0-9]$/)) return; // Sadece harf ve rakamları al
-        const key = document.createElement("div");
-        key.classList.add("key");
-        key.textContent = event.key.toUpperCase();
-        key.style.backgroundColor = `hsl(${Math.random() * 360}, 80%, 50%)`;
-        keyboard.appendChild(key);
-
-        // Rastgele bir ses çal
-        const sound = new Audio(keySounds[Math.floor(Math.random() * keySounds.length)]);
-        sound.play();
-
-        // 500ms sonra tuşu kaldır
-        setTimeout(() => key.remove(), 500);
+    document.querySelector(".uwu-logo").addEventListener("mouseover", function() {
+        this.style.transform = "scale(1.1)";
+    });
+    document.querySelector(".uwu-logo").addEventListener("mouseleave", function() {
+        this.style.transform = "scale(1)";
     });
 
-    // Ruh Haline Göre Blog İçeriği
-    const moodSelector = document.querySelector(".duygu-bar");
-    const moods = ["Mutlu", "Üzgün", "Nostaljik", "Heyecanlı", "Yorgun"];
-    const moodText = {
-        "Mutlu": "Bugün harika bir gün! 🎉",
-        "Üzgün": "Bazen kötü hissetmek normaldir. Kendine zaman tanı. 💙",
-        "Nostaljik": "Eski güzel günleri hatırlamak güzeldir. 🎶",
-        "Heyecanlı": "Bugün yeni bir macera seni bekliyor! 🚀",
-        "Yorgun": "Kendine bir kahve ısmarla ve biraz rahatla. ☕"
-    };
-
-    let moodIndex = 0;
-    moodSelector.addEventListener("click", () => {
-        moodIndex = (moodIndex + 1) % moods.length;
-        moodSelector.querySelector("h2").textContent = `🎭 ${moods[moodIndex]}`;
-        moodSelector.querySelector("p")?.remove(); // Önceki metni temizle
-        const moodParagraph = document.createElement("p");
-        moodParagraph.textContent = moodText[moods[moodIndex]];
-        moodSelector.appendChild(moodParagraph);
+    document.querySelector(".profile-pic").addEventListener("mouseover", function() {
+        this.style.border = "3px solid #ffffff";
+    });
+    document.querySelector(".profile-pic").addEventListener("mouseleave", function() {
+        this.style.border = "3px solid #ff79c6";
     });
 
+    document.addEventListener("keydown", function(event) {
+        const keyboard = document.querySelector(".keyboard img");
+        keyboard.style.filter = `hue-rotate(${Math.random() * 360}deg)`;
+        new Audio('./sounds/keypress.mp3').play();
+    });
 });
+
+function aiFali() {
+    const predictions = [
+        "Yarın büyük bir sürpriz seni bekliyor!",
+        "Bugün bol bol su iç, çünkü evren sana sinyal veriyor.",
+        "Bir kedi ile göz göze geldiğinde dilek tut!",
+        "3 gün içinde beklenmedik bir haber alacaksın.",
+        "Bugün yapacağın ilk seçim tüm kaderini değiştirebilir.",
+    ];
+    alert(predictions[Math.floor(Math.random() * predictions.length)]);
+}
+
+function zamanKapsulu() {
+    let message = prompt("Gelecekte kendine ne söylemek istersin?");
+    if (message) {
+        localStorage.setItem("zamanKapsulu", message);
+        alert("Mesajın başarıyla kaydedildi!");
+    }
+}
+
+function duyguBari() {
+    const moods = {
+        "mutlu": "Bugün harika hissediyorsun! En iyi mutluluk hikayelerine göz at.",
+        "üzgün": "Biraz dertleşmeye mi ihtiyacın var? İşte senin için seçtiğimiz yazılar.",
+        "nostaljik": "Eski güzel günleri hatırlamak için mükemmel blog yazıları burada!",
+        "gergin": "Rahatlamak için birkaç önerimiz var, derin nefes al ve oku.",
+        "aşık": "Aşk dolu hikayeler ve şiirler seni bekliyor!",
+    };
+    let mood = prompt("Bugün nasıl hissediyorsun? (mutlu, üzgün, nostaljik, gergin, aşık)");
+    if (moods[mood]) {
+        alert(moods[mood]);
+    } else {
+        alert("Geçerli bir ruh hali seçmedin!");
+    }
+}
+
+function sansliCekilis() {
+    const tasks = [
+        "Bugün yeni bir şey dene!",
+        "Bir arkadaşına mesaj at!",
+        "Eski fotoğraflarına bak ve bir anı paylaş.",
+        "Kendi için 10 dakika meditasyon yap.",
+        "Bugün bol bol su içmeyi unutma!",
+        "Dışarı çık ve yürüyüş yap.",
+    ];
+    alert(`Bugün ne yapmalısın? 🤔\n${tasks[Math.floor(Math.random() * tasks.length)]}`);
+}
+
+function spotifyOner() {
+    const playlists = {
+        "mutlu": "https://open.spotify.com/playlist/1",
+        "üzgün": "https://open.spotify.com/playlist/2",
+        "nostaljik": "https://open.spotify.com/playlist/3",
+        "gergin": "https://open.spotify.com/playlist/4",
+        "aşık": "https://open.spotify.com/playlist/5",
+    };
+    let mood = prompt("Bugün nasıl bir müzik dinlemek istersin? (mutlu, üzgün, nostaljik, gergin, aşık)");
+    if (playlists[mood]) {
+        window.open(playlists[mood], "_blank");
+    } else {
+        alert("Geçerli bir ruh hali seçmedin!");
+    }
+}
+
+function miniGame() {
+    let score = Math.floor(Math.random() * 100);
+    alert(`Mini oyun tamamlandı! Skorun: ${score}`);
+    localStorage.setItem("highScore", score);
+}
