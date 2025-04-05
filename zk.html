@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zaman Kapsülü</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <style>
+    * {
+        box-sizing: border-box;
+    }
+
+    textarea:focus,
+    input:focus,
+    textarea:invalid,
+    input:invalid {
+        border: 2px dashed #8ee0ff !important;
+        outline: none;
+        box-shadow: none;
+        }
+
+    body {
+      margin: 0;
+      font-family: 'Patrick Hand', cursive;
+      background: #bfe4ed;
+      color: #333;
+    }
+    textarea {
+  resize: none;
+}
+
+
+    video.bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 60px auto;
+      background: rgba(126, 199, 203, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+      opacity: 0.85;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.3em;
+      margin-bottom: 10px;
+      color: #185d75;
+    }
+
+    p.sub {
+      text-align: center;
+      color: #091643;
+      margin-bottom: 25px;
+    }
+
+    textarea, input[type="date"] {
+      width: 100%;
+      padding: 12px;
+      border: 2px dashed #8ee0ff;
+      border-radius: 12px;
+      font-family: 'Kalam', cursive;
+      font-size: 1em;
+      background-color: #e7faff;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .visibility {
+      margin-bottom: 15px;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      margin: 5px auto;
+    }
+
+    button {
+      background-color: #88ddee;
+      color: #064d60;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: 'Patrick Hand', cursive;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #6ed3ea;
+    }
+
+    .msg {
+      background: #f1fdff;
+      border-left: 4px solid #71cce3;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+      position: relative;
+      animation: fadeIn 0.7s ease;
+    }
+
+    .msg.locked {
+      opacity: 0.5;
+      font-style: italic;
+      border-left: 4px dashed #a4dbe5;
+    }
+
+    .msg.private::before {
+      content: "💌 Sadece senin için";
+      font-size: 0.85em;
+      color: #666;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .msg.shared::before {
+      content: "💌 Sana gelen bir not:";
+      font-size: 0.85em;
+      color: #666;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .timestamp {
+      font-size: 0.8em;
+      color: #666;
+      margin-top: 8px;
+    }
+
+    .toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fef3f6;
+      color: #a33a66;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      opacity: 0;
+      z-index: 999;
+      transition: opacity 0.4s ease;
+      font-family: 'Kalam', cursive;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.95em;
+      text-decoration: underline;
+      color: #227e9c;
+}
+
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<video class="bg" autoplay muted loop>
+  <source src="./images/zkbg.mp4" type="video/mp4">
+</video>
+
+<div class="toast" id="toast">Lütfen tüm alanları doldur 🙃</div>
+
+<div class="container">
+  <h1>📦 Zaman Kapsülü</h1>
+  <p class="sub">Belki bir gün... kendine ya da bir başkasına.</p>
+
+  <textarea id="msgInput" rows="5" placeholder="Sana ya da başkasına söylemek istediğin bir şey?"></textarea>
+  <input type="date" id="dateInput" />
+
+  <div class="visibility">
+    <label>
+      <input type="radio" name="vis" value="private" checked> Sadece ben göreyim
+    </label><br>
+    <label>
+      <input type="radio" name="vis" value="shared"> Herkes görebilsin
+    </label>
+  </div>
+
+  <button onclick="saveMessage()">Kapsüle Gönder</button>
+
+  <div id="msgList"></div>
+  <a href="index.html" class="back-link">« Back to main site</a>
+
+</div>
+
+<script>
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 3000);
+  }
+
+  function formatDate(d) {
+    return new Date(d).toLocaleDateString("tr-TR", {
+      day: "2-digit", month: "long", year: "numeric"
+    });
+  }
+
+  function saveMessage() {
+    const msg = document.getElementById("msgInput").value.trim();
+    const date = document.getElementById("dateInput").value;
+    const visibility = document.querySelector('input[name="vis"]:checked').value;
+
+    if (!msg || !date) {
+      showToast("Lütfen tüm alanları doldur 🙃");
+      return;
+    }
+
+    const kapsul = {
+      text: msg,
+      openDate: date,
+      savedAt: new Date().toISOString(),
+      visibility
+    };
+
+    let kapsuller = JSON.parse(localStorage.getItem("kapsuller") || "[]");
+    kapsuller.unshift(kapsul);
+    localStorage.setItem("kapsuller", JSON.stringify(kapsuller));
+    document.getElementById("msgInput").value = "";
+    document.getElementById("dateInput").value = "";
+    renderMessages();
+  }
+
+  function renderMessages() {
+    const kapsuller = JSON.parse(localStorage.getItem("kapsuller") || "[]");
+    const now = new Date();
+    const container = document.getElementById("msgList");
+    container.innerHTML = "";
+
+    kapsuller.forEach(k => {
+      const openDate = new Date(k.openDate);
+      const isOpen = openDate <= now;
+      const div = document.createElement("div");
+
+      if (isOpen) {
+        div.className = `msg ${k.visibility === "shared" ? "shared" : "private"}`;
+        div.innerHTML = `
+          <p>${k.text}</p>
+          <div class="timestamp">📮 ${formatDate(k.savedAt)} · 🎯 ${formatDate(k.openDate)}</div>`;
+      } else {
+        div.className = "msg locked";
+        div.innerHTML = `<p>🔒 ${formatDate(k.openDate)} tarihinde açılacak bir kapsül...</p>`;
+      }
+
+      container.appendChild(div);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", renderMessages);
+</script>
+
+</body>
+</html>
