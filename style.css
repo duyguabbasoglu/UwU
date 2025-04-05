@@ -1,173 +1,156 @@
 body {
     font-family: 'Patrick Hand', 'Kalam', cursive;
-    background: #d9d9d9;
-    color: white;
     margin: 0;
     padding: 0;
-    text-align: center;
+    background: #fce8f2;
+    color: #333;
     overflow-x: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-h1, h2, .navbar a {
-    font-family: 'Patrick Hand', cursive;
   }
   
-  p, button, .main {
-    font-family: 'Kalam', cursive;
-  }
-  
-
-/* 🔥 Arkaplan Video Sabitlendi */
-.video-container {
+  .video-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     overflow: hidden;
-}
-
-.video-container video {
+    z-index: -2;
+  }
+  
+  .video-container video {
     width: 100%;
     height: auto;
-}
-
-/* 🔥 PC Çerçevesi */
-.pc-frame {
+    object-fit: cover;
+  }
+  
+  .pc-frame {
     width: 95%;
-    max-width: 1100px;
-    background: rgba(17, 17, 17, 0.85);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    margin: 60px auto;
     position: relative;
-}
-
-/* 🔥 Header */
-.header {
+    z-index: 1;
+  }
+  
+  .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* UWU Logosu */
-.uwu-logo {
-    width: 150px;
+    padding: 10px 20px;
+  }
+  
+  .uwu-logo {
+    width: 120px;
     height: auto;
-    position: relative;
-    left: 50px;
-}
-
-/* 🔥 Profil Resmi ve DyliaX'i Sağa Aldım */
-.profile-container {
+  }
+  
+  .profile-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
-    right: 50px;
-}
-
-.profile-pic {
-    width: 150px;
-    height: 150px;
-    border: 6px solid #ff79c6;
+  }
+  
+  .profile-pic {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
     border-radius: 10px;
-    bottom: 30px;
-}
-
-#nickname {
+    border: 3px dashed #ff79c6;
+  }
+  
+  #nickname {
     font-size: 14px;
     font-weight: bold;
-    color: white;
-    background: rgba(0, 0, 0, 0.6);
+    background: #ffe4ef;
     padding: 5px 10px;
-    border-radius: 5px;
-    margin-top: 5px;
-}
-
-/* 🔥 Navbar Sabitlendi */
-.navbar {
-    width: 100%;
+    border-radius: 8px;
+    margin-top: 6px;
+    color: #444;
+  }
+  
+  .navbar {
+    margin: 20px 0;
     text-align: center;
-    margin-top: 10px;
-}
-
-.navbar ul {
+  }
+  
+  .navbar ul {
+    list-style: none;
     display: flex;
     justify-content: center;
     gap: 15px;
-    list-style: none;
-    padding: 12px;
-    background-color: rgba(255, 121, 198, 0.9);
-    border-radius: 10px;
-    width: 90%;
-    margin: auto;
-}
-
-.navbar ul li a {
+    padding: 10px;
+    border-radius: 12px;
+    background-color: #ffcbe5;
+    flex-wrap: wrap;
+  }
+  
+  .navbar ul li a {
     text-decoration: none;
-    color: white;
+    color: #333;
     font-weight: bold;
-    font-size: 22px;
-    padding: 12px 18px;
-    border-radius: 5px;
+    font-size: 1.1em;
+    padding: 8px 14px;
+    border-radius: 8px;
     transition: 0.3s;
-}
-
-/* 🔥 İçerik */
-.main {
+  }
+  
+  .navbar ul li a:hover {
+    background-color: #ffb5d7;
+    color: white;
+  }
+  
+  .main {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin: 20px 0;
-}
-
-/* 🔥 Duygu Barı ve AI Falı Yan Yana */
-.duygufali {
+    gap: 20px;
+    padding-top: 10px;
+  }
+  
+  .duygufali, .spotifyhigh {
     display: flex;
-    justify-content: center;
-    gap: 15px;
-    width: 90%;
-}
-
-/* 🔥 Şarkılar ve High Score Yan Yana */
-.spotifyhigh {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    width: 90%;
-    margin: auto;
-}
-
-/* Klavye */
-.keyboard {
-    display: none;
-}
-
-/* 🔥 Sayfanın Her Zaman Sabit Kalmasını Sağladım */
-@media screen and (max-width: 900px) {
-    .profile-container {
-        position: relative;
-        right: 0;
-        top: 0;
-    }
-    .duygufali, .spotifyhigh {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-#visitormesg {
-    font-size: 18px;
-    font-style: italic;
-    padding: 10px 20px;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  #bum, .duygufali > div, .spotifyhigh > div {
+    background-color: #fff0f7;
+    border: 2px dashed #ff99c8;
+    border-radius: 12px;
+    padding: 15px;
+    flex: 1 1 45%;
+    min-width: 250px;
+  }
+  
+  #visitor {
+    text-align: center;
     margin-bottom: 20px;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
+  }
+  
+  #visitormesg {
+    font-size: 16px;
+    font-style: italic;
+    padding: 8px 16px;
+    background-color: #fffafc;
+    border-left: 4px solid #ff99c8;
+    border-radius: 8px;
+    display: inline-block;
+  }
+  
+  .keyboard {
+    display: none;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .duygufali, .spotifyhigh {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .navbar ul {
+      flex-direction: column;
+    }
+  }
+  
