@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Monaware</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Patrick Hand', cursive;
+      background-image: url('./images/minigamebg.webp');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      color: #fff;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 60px auto;
+      background-color: rgba(0, 0, 0, 0.45);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #ffd9f9;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    #word {
+      font-size: 2em;
+      background-color: #fff0fa;
+      color: #444;
+      padding: 10px 20px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 1.2em;
+      border-radius: 10px;
+      border: 2px dashed #ffb5d7;
+      background-color: #fffafc;
+      color: #333;
+      font-family: 'Patrick Hand', cursive;
+      width: 80%;
+      margin-top: 10px;
+    }
+
+    .info {
+      margin-top: 15px;
+      font-size: 1.1em;
+    }
+
+    .scores {
+      margin-top: 40px;
+      text-align: left;
+      background-color: rgba(255,255,255,0.85);
+      padding: 20px;
+      border-radius: 15px;
+      color: #444;
+    }
+
+    .score-entry {
+      margin-bottom: 12px;
+      border-left: 4px solid #ff99cc;
+      padding-left: 10px;
+      font-size: 1em;
+    }
+
+    .score-entry span {
+      font-weight: bold;
+      color: #cc0066;
+    }
+
+    .game-over {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 192, 203, 0.95);
+      color: #333;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      display: none;
+      z-index: 10;
+      font-family: 'Kalam', cursive;
+    }
+
+    .game-over button {
+      margin: 10px 5px;
+      padding: 10px 20px;
+      font-family: 'Patrick Hand', cursive;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      justify-content: center;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.95em;
+      text-decoration: underline;
+      color: #ffccf5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⌨️  Monaware ⌨️</h1>
+    <p>1 dakika boyunca çıkan kelimeleri doğru yaz, skor topla!</p>
+
+    <div id="word">Hazır mısın?</div>
+    <br>
+    <input type="text" id="input" onkeypress="checkEnter(event)" disabled>
+
+    <div class="info">
+      <p>Süre: <span id="time">60</span> saniye</p>
+      <p>Doğru: <span id="correct">0</span> | Yanlış: <span id="wrong">0</span></p>
+      <p>Skor: <span id="score">0</span></p>
+      <button onclick="startGame()">Oyunu Başlat</button>
+    </div>
+
+    <div class="scores" id="highscores">
+      <h2>High Scores 💫</h2>
+    </div>
+
+    <a href="index.html" class="back-link">« Back to main site</a>
+  </div>
+
+  <div class="game-over" id="gameOver">
+    <h2>Game Over 🎀</h2>
+    <p>Skorun: <span id="finalScore"></span></p>
+    <input type="text" id="note" placeholder="Notunuz (opsiyonel)">
+    <br>
+    <button onclick="saveScore()">Kaydet</button>
+    <button onclick="cancelPopup()">Vazgeç</button>
+  </div>
+
+  <script>
+    let wordList = [
+      "bunny", "dream", "cloud", "candle", "peach", "star", "hug", "nostalgia", "cupcake", "midnight",
+      "soft", "pink", "rainbow", "music", "sparkle", "fluffy", "wish", "cozy", "magic", "sunshine"
+    ];
+    while (wordList.length < 400) {
+      wordList.push(wordList[Math.floor(Math.random() * 20)]);
+    }
+
+    let score = 0, correct = 0, wrong = 0;
+    let timeLeft = 60;
+    let timer;
+    let currentWord = "";
+    let gameEnded = false;
+
+    function startGame() {
+      score = 0; correct = 0; wrong = 0;
+      timeLeft = 60; gameEnded = false;
+      document.getElementById("score").innerText = score;
+      document.getElementById("time").innerText = timeLeft;
+      document.getElementById("correct").innerText = correct;
+      document.getElementById("wrong").innerText = wrong;
+      document.getElementById("input").disabled = false;
+      document.getElementById("input").value = "";
+      document.getElementById("input").placeholder = "";
+      document.getElementById("input").focus();
+      document.getElementById("gameOver").style.display = "none";
+      nextWord();
+      clearInterval(timer);
+      timer = setInterval(() => {
+        if (timeLeft > 0) {
+          timeLeft--;
+          document.getElementById("time").innerText = timeLeft;
+        } else if (!gameEnded) {
+          gameEnded = true;
+          clearInterval(timer);
+          endGame();
+        }
+      }, 1000);
+    }
+
+    function nextWord() {
+      currentWord = wordList[Math.floor(Math.random() * wordList.length)];
+      document.getElementById("word").innerText = currentWord;
+    }
+
+    function checkEnter(e) {
+      if (e.key === "Enter") checkWord();
+    }
+
+    function checkWord() {
+      const input = document.getElementById("input").value.trim().toLowerCase();
+      if (input === currentWord) {
+        score++;
+        correct++;
+      } else {
+        wrong++;
+      }
+      document.getElementById("score").innerText = score;
+      document.getElementById("correct").innerText = correct;
+      document.getElementById("wrong").innerText = wrong;
+      document.getElementById("input").value = "";
+      nextWord();
+    }
+
+    function endGame() {
+      document.getElementById("input").disabled = true;
+      document.getElementById("finalScore").innerText = score;
+      document.getElementById("gameOver").style.display = "block";
+    }
+
+    function saveScore() {
+      const note = document.getElementById("note").value || "🌸";
+      const scores = JSON.parse(localStorage.getItem("monawareHighScores") || "[]");
+      scores.unshift({ score, note, correct, wrong, time: new Date().toLocaleString() });
+      localStorage.setItem("monawareHighScores", JSON.stringify(scores));
+      document.getElementById("gameOver").style.display = "none";
+      renderScores();
+    }
+
+    function cancelPopup() {
+      document.getElementById("gameOver").style.display = "none";
+    }
+
+    function renderScores() {
+      const scores = JSON.parse(localStorage.getItem("monawareHighScores") || "[]");
+      const container = document.getElementById("highscores");
+      const entries = scores.slice(0, 10).map(entry => `
+        <div class="score-entry">
+        <span>${entry.score} puan</span> – ${entry.note}<br>
+        ✅ ${entry.correct || 0} | ❌ ${entry.wrong || 0}<br>
+        <small>${entry.time}</small>
+    </div>
+    `);
+      container.innerHTML = "<h2>High Scores 💫</h2>" + entries.join("");
+    }
+
+    document.addEventListener("DOMContentLoaded", renderScores);
+  </script>
+</body>
+</html>

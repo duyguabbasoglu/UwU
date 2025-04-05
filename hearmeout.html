@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hear Me Out</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Patrick Hand', cursive;
+      background-image: url('./images/hearmeback.avif');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      color: #333;
+    }
+
+    .page {
+      max-width: 700px;
+      margin: 60px auto;
+      background: rgba(255, 240, 250, 0.95);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.3em;
+      margin-bottom: 10px;
+    }
+
+    #p {
+      text-align: center;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 15px;
+      display: block;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 2px dashed #ff9ac4;
+      border-radius: 10px;
+      font-family: 'Kalam', cursive;
+      font-size: 1em;
+      background-color: #fff0f5;
+    }
+
+    button {
+      background-color: #ff8dc7;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      margin-top: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff69b4;
+    }
+
+    .entry {
+      background: #ffe4ef;
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .entry .delete-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      color: #ff0073;
+      border: none;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+    .timestamp {
+      font-size: 0.8em;
+      color: #999;
+      margin-left: 6px;
+    }
+
+    .like-reply {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 1em;
+    }
+
+    .like-btn {
+      cursor: pointer;
+      user-select: none;
+      font-size: 1.2em;
+      color: #999;
+    }
+
+    .like-btn.liked {
+      color: #ff4081;
+    }
+
+    .reply-box {
+      margin-top: 10px;
+    }
+
+    .reply {
+      background-color: #fff0f7;
+      border-left: 3px solid #ff99c8;
+      margin-top: 8px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.9em;
+    }
+
+    .reply .meta {
+      font-size: 0.75em;
+      color: #aaa;
+      margin-top: 4px;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.95em;
+      text-decoration: underline;
+      color: #cc3399;
+    }
+
+    #final-warning {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      text-align: center;
+    }
+
+    #final-warning img {
+      width: 300px;
+    }
+
+    #final-warning p {
+      color: #ff69b4;
+      font-size: 2em;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>DİKKAT!! SAFE PLACE'E ULAŞTIN 😊</h1>
+    <p id="p">~Burası her şeyi paylaşabileceğin sakin bir alan~</p><br>
+
+    <label for="name">Nick:</label>
+    <input id="name" placeholder="anonim de olur :)" />
+
+    <label for="message">Mesajın:</label>
+    <textarea id="message" placeholder="çekinme ayol biz bizeyiz 💌"></textarea>
+
+    <button onclick="addEntry()">Send</button>
+
+    <div id="entries"></div>
+
+    <a href="index.html" class="back-link">« Back to main site</a>
+  </div>
+
+  <div id="final-warning">
+    <img src="./images/areyousure.png" alt="Are You Sure?" />
+    <p>BAŞKALARININ DUYGULARINI SİLMEK AYIPLI 💔</p>
+  </div>
+
+  <script>
+    let deleteAttempts = 0;
+    const myNick = localStorage.getItem('myNick');
+
+    function formatDate(date) {
+      return date.toLocaleString("tr-TR", {
+        day: '2-digit', month: 'long', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      });
+    }
+
+    function addEntry() {
+      const name = document.getElementById("name").value.trim() || "Anonymous";
+      const msg = document.getElementById("message").value.trim();
+      if (!msg) return;
+      localStorage.setItem("myNick", name);
+      const entries = JSON.parse(localStorage.getItem("hearEntries") || "[]");
+      entries.unshift({ name, msg, likes: 0, likedBy: [], replies: [], timestamp: formatDate(new Date()) });
+      localStorage.setItem("hearEntries", JSON.stringify(entries));
+      document.getElementById("message").value = "";
+      renderEntries();
+    }
+
+    function deleteEntry(index) {
+      const entries = JSON.parse(localStorage.getItem("hearEntries") || "[]");
+      if (entries[index].name !== myNick) {
+        deleteAttempts++;
+        if (deleteAttempts >= 3) {
+          document.getElementById('final-warning').style.display = 'flex';
+        }
+        return;
+      }
+      entries.splice(index, 1);
+      localStorage.setItem("hearEntries", JSON.stringify(entries));
+      renderEntries();
+    }
+
+    function toggleLike(index) {
+      const entries = JSON.parse(localStorage.getItem("hearEntries") || "[]");
+      const nick = localStorage.getItem("myNick") || "anon";
+      const entry = entries[index];
+      const likedIndex = entry.likedBy.indexOf(nick);
+      if (likedIndex === -1) {
+        entry.likedBy.push(nick);
+        entry.likes++;
+      } else {
+        entry.likedBy.splice(likedIndex, 1);
+        entry.likes = Math.max(0, entry.likes - 1);
+      }
+      localStorage.setItem("hearEntries", JSON.stringify(entries));
+      renderEntries();
+    }
+
+    function renderEntries() {
+      const entries = JSON.parse(localStorage.getItem("hearEntries") || "[]");
+      const nick = localStorage.getItem("myNick") || "anon";
+      const container = document.getElementById("entries");
+      container.innerHTML = "";
+      entries.forEach((entry, i) => {
+        const isLiked = entry.likedBy.includes(nick);
+        const div = document.createElement("div");
+        div.className = "entry";
+        div.innerHTML = `
+          <button class="delete-btn" onclick="deleteEntry(${i})">🗑️</button>
+          <p>${entry.msg}</p>
+          <p>— ${entry.name}<span class="timestamp"> · ${entry.timestamp || ''}</span></p>
+          <div class="like-reply">
+            <span class="like-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike(${i})">❤️ ${entry.likes}</span>
+            <span onclick="toggleReplyForm(${i})" style="cursor:pointer">reply</span>
+          </div>
+          <div class="reply-box" id="reply-form-${i}" style="display:none">
+            <input id="reply-name-${i}" placeholder="Nick" />
+            <textarea id="reply-msg-${i}" placeholder="Mesaj"></textarea>
+            <button onclick="addReply(${i})">Gönder</button>
+          </div>
+          ${entry.replies.map(reply => `
+            <div class="reply">
+              <strong>${reply.name}</strong>: ${reply.msg}
+              <div class="meta">${reply.timestamp || ''}</div>
+            </div>
+          `).join("")}
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function toggleReplyForm(index) {
+      const form = document.getElementById(`reply-form-${index}`);
+      form.style.display = form.style.display === "none" ? "block" : "none";
+    }
+
+    function addReply(index) {
+      const name = document.getElementById(`reply-name-${index}`).value.trim() || "Anonymous";
+      const msg = document.getElementById(`reply-msg-${index}`).value.trim();
+      if (!msg) return;
+      const entries = JSON.parse(localStorage.getItem("hearEntries") || "[]");
+      entries[index].replies.push({ name, msg, timestamp: formatDate(new Date()) });
+      localStorage.setItem("hearEntries", JSON.stringify(entries));
+      renderEntries();
+    }
+
+    document.addEventListener("DOMContentLoaded", renderEntries);
+  </script>
+</body>
+</html>
