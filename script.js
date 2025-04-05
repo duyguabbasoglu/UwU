@@ -6,7 +6,27 @@ document.addEventListener("DOMContentLoaded", function() {
         "internette bir şey ararken 3 saat sonra bambaşka bir konudaydı.",
         "kendine spora başlayacağını söyledi ve hemen unuttu.",
         "bu sitenin ne olduğunu bilmeden girdi ve hala anlamaya çalışıyor.",
+        "oy verme ekranında bir tuşa 5 kere bastı, yine olmadı.",
+        "Google’a ‘acaba’ yazdı ve kendini burada buldu.",
+        "Spotify’da çalan şarkıya ağlamayı düşündü ama sonra geçti.",
+        "bir memeye 7 dakika güldü.",
+        "uyumak için telefona bakmamaya söz verdi, ama yine buradaydı.",
+        "bir YouTube videosu açtı, sonra 12 tane daha.",
+        "Discord'dan 'çevrimdışı' olup yine aktifti.",
+        "bahar temizliği yapacaktı ama tarayıcıyı temizledi.",
+        "kedisi klavyeye bastı, buraya geldi.",
+        "Twitter’da ‘bugün de delirmedik’ tweetini beğendi.",
+        "duygularını Google Translate’e yazdı.",
+        "AI ile konuşmaya başladı, sonra alıştı.",
+        "eski mesajları okuyup cringe oldu.",
+        "gece 2'de 'felsefi kurabiye tarifleri' aradı.",
+        "ekmek almaya diye çıktı, Vercel’e deploy etti.",
+        "404 hatası verdi ama duygusal olarak.",
+        "‘daha ne kadar saçmalayabilir?’ derken bu siteye geldi.",
+        "rüya görüyordu sandı ama burası gerçekti.",
+        "bugün kendine tatlı alacaktı, tatlı linkler buldu."
     ];
+    
     document.getElementById("visitormesg").innerText = `Senden önce buraya gelen kişi ${messages[Math.floor(Math.random() * messages.length)]}`;
 
     document.querySelector(".uwu-logo").addEventListener("mouseover", function() {
