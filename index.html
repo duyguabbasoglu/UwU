@@ -5,68 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UWU</title>
     <link rel="stylesheet" href="style.css">
-    <script src="index.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
 
-    <div class="container">
+    <div class="video-container">
         <video autoplay loop muted>
-            <source src="./images/uwubg.mov">
+            <source src="./images/uwubg.mov" type="video/mp4">
         </video>
     </div>
 
-    <div class="header">
-        <span id="nickname">DyliaX</span>
-        <img src="./images/uwulogo.png" alt="UWU Logo" class="uwu-logo">
-        <div class="profile-container">
-            <img src="./images/uwupp.jpg" alt="Profile Picture" class="profile-pic">
-        </div>
-    </div>
-
-    <div class="navbar">
-        <ul>
-            <li><a href="#">hear me out</a></li>
-            <li><a href="#">cekilis</a></li>
-            <li><a href="#">zaman kapsulu</a></li>
-            <li><a href="#">minigame</a></li>
-        </ul>
-    </div>
-
-    <div class="main">
-        <div id="visitor">
-            <p id="visitormesg"></p>
-        </div>
-
-        <div class="duygufali">
-            <div id="duygubar">
-                <h2>Duygu Barı</h2>
-                <p>aaa</p>
-            </div>
-            <div id="falcibaci">
-                <h2>AI Falı</h2>
-                <p>ewfwfwefw</p>
+    <div class="pc-frame">
+        <div class="header">
+            <img src="./images/uwulogo.png" class="uwu-logo">
+            <div class="profile-container">
+                <img src="./images/uwupp.jpg" class="profile-pic">
+                <span id="nickname">DyliaX</span>
             </div>
         </div>
 
-        <div id="bum">
-            <h2>Duygu’nun Günlüğü</h2>
-            <p>...</p>
+        <div class="navbar">
+            <ul>
+                <li><a href="#" onclick="aiFali()">hear me out</a></li>
+                <li><a href="#" onclick="sansliCekilis()">cekilis</a></li>
+                <li><a href="#" onclick="zamanKapsulu()">zaman kapsulu</a></li>
+                <li><a href="#" onclick="miniGame()">minigame</a></li>
+            </ul>
         </div>
 
-        <div class="spotifyhigh">
-            <div class="spotify">
-                <h2>Şarkılar</h2>
-                <p>.....</p>
+        <div class="main">
+            <div id="visitor">
+                <p id="visitormesg"></p>
             </div>
-            <div class="highscore">
-                <h2>High Scores</h2>
-                <p>minigame</p>
+
+            <div class="duygufali">
+                <div id="duygubar" onclick="duyguBari()">
+                    <h2>Duygu Barı</h2>
+                    <p>Bugünkü ruh halini seç ve blog yazıları arasından öneri al!</p>
+                </div>
+                <div id="falcibaci" onclick="aiFali()">
+                    <h2>AI Falı</h2>
+                    <p>(Günün Kehaneti Burada Gösterilecek)</p>
+                </div>
+            </div>
+
+            <div id="bum">
+                <h2>Duygu’nun Günlüğü</h2>
+                <p>Kendi düşüncelerini ve hikayelerini paylaş!</p>
+            </div>
+
+            <div class="spotifyhigh">
+                <div class="spotify" onclick="spotifyOner()">
+                    <h2>Şarkılar</h2>
+                    <p>Bugünkü ruh haline göre önerilen playlistler</p>
+                </div>
+                <div class="highscore">
+                    <h2>High Scores</h2>
+                    <p>Mini oyun lider tablosu</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="keyboard">
-        <img src="./images/uwukeyboard.webp">
+        <div class="keyboard">
+            <img src="./images/uwukeyboard.webp">
+        </div>
     </div>
 
 </body>
