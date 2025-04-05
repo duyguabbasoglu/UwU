@@ -1,0 +1,9 @@
+{
+    "rewrites": [
+      { "source": "/hearmeout", "destination": "/hearmeout.html" },
+      { "source": "/monaware", "destination": "/minigame.html" },
+      { "source": "/cekilis", "destination": "/cekilis.html" },
+      { "source": "/zk", "destination": "/zk.html" }
+    ]
+  }
+  
