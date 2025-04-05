@@ -141,30 +141,36 @@
       color: #cc3399;
     }
 
-    #final-warning {
+    #gif-warning {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: black;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.7);
       z-index: 9999;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+    }
+
+    #gif-warning img {
+      transition: transform 0.5s ease;
+      max-width: 300px;
+    }
+
+    #final-warning-screen {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: black;
       color: white;
+      font-size: 8em;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
       text-align: center;
-    }
-
-    #final-warning img {
-      width: 300px;
-    }
-
-    #final-warning p {
-      color: #ff69b4;
-      font-size: 2em;
-      margin-top: 20px;
+      font-family: 'Kalam', cursive;
     }
   </style>
 </head>
@@ -186,14 +192,18 @@
     <a href="index.html" class="back-link">« Back to main site</a>
   </div>
 
-  <div id="final-warning">
-    <img src="./images/areyousure.png" alt="Are You Sure?" />
-    <p>BAŞKALARININ DUYGULARINI SİLMEK AYIPLI 💔</p>
+  <div id="gif-warning" onclick="cycleGifWarning()">
+    <img id="warningGif" src="./images/areyousure.gif" alt="are you sure?" />
+  </div>
+
+  <div id="final-warning-screen">
+    BAŞKALARININ DUYGULARINI SİLMEK AYIPLIDIR 💔
   </div>
 
   <script>
     let deleteAttempts = 0;
-    const myNick = localStorage.getItem('myNick');
+    let gifClickCount = 0;
+    const myNick = localStorage.getItem("myNick");
 
     function formatDate(date) {
       return date.toLocaleString("tr-TR", {
@@ -219,13 +229,28 @@
       if (entries[index].name !== myNick) {
         deleteAttempts++;
         if (deleteAttempts >= 3) {
-          document.getElementById('final-warning').style.display = 'flex';
+          document.getElementById("gif-warning").style.display = "none";
+          document.getElementById("final-warning-screen").style.display = "flex";
+        } else {
+          document.getElementById("gif-warning").style.display = "flex";
+          gifClickCount = 0;
         }
         return;
       }
       entries.splice(index, 1);
       localStorage.setItem("hearEntries", JSON.stringify(entries));
       renderEntries();
+    }
+
+    function cycleGifWarning() {
+      const gif = document.getElementById("warningGif");
+      gifClickCount++;
+      if (gifClickCount === 1) gif.style.transform = "scale(2.4)";
+      else if (gifClickCount === 2) gif.style.transform = "scale(4.4)";
+      else {
+        document.getElementById("gif-warning").style.display = "none";
+        document.getElementById("final-warning-screen").style.display = "flex";
+      }
     }
 
     function toggleLike(index) {
@@ -244,6 +269,16 @@
       renderEntries();
     }
 
+    function submitReply(index) {
+      const rname = document.getElementById(`rname${index}`).value.trim() || "Anonymous";
+      const rmsg = document.getElementById(`rmsg${index}`).value.trim();
+      if (!rmsg) return;
+      const entries = JSON.parse(localStorage.getItem("hearEntries") || "[]");
+      entries[index].replies.push({ name: rname, msg: rmsg, date: formatDate(new Date()) });
+      localStorage.setItem("hearEntries", JSON.stringify(entries));
+      renderEntries();
+    }
+
     function renderEntries() {
       const entries = JSON.parse(localStorage.getItem("hearEntries") || "[]");
       const nick = localStorage.getItem("myNick") || "anon";
@@ -253,43 +288,27 @@
         const isLiked = entry.likedBy.includes(nick);
         const div = document.createElement("div");
         div.className = "entry";
+        const repliesHTML = entry.replies.map(r => `
+          <div class="reply">
+            ${r.msg}<br>
+            <div class="meta">— ${r.name} · ${r.date}</div>
+          </div>`).join("");
         div.innerHTML = `
           <button class="delete-btn" onclick="deleteEntry(${i})">🗑️</button>
           <p>${entry.msg}</p>
           <p>— ${entry.name}<span class="timestamp"> · ${entry.timestamp || ''}</span></p>
           <div class="like-reply">
             <span class="like-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike(${i})">❤️ ${entry.likes}</span>
-            <span onclick="toggleReplyForm(${i})" style="cursor:pointer">reply</span>
+            <span style="cursor:pointer; " onclick="document.getElementById('reply${i}').style.display='block'">reply</span>
           </div>
-          <div class="reply-box" id="reply-form-${i}" style="display:none">
-            <input id="reply-name-${i}" placeholder="Nick" />
-            <textarea id="reply-msg-${i}" placeholder="Mesaj"></textarea>
-            <button onclick="addReply(${i})">Gönder</button>
+          <div id="reply${i}" class="reply-box" style="display:none;">
+            <input id="rname${i}" placeholder="adın">
+            <textarea id="rmsg${i}" placeholder="yanıtın"></textarea>
+            <button onclick="submitReply(${i})">Gönder</button>
           </div>
-          ${entry.replies.map(reply => `
-            <div class="reply">
-              <strong>${reply.name}</strong>: ${reply.msg}
-              <div class="meta">${reply.timestamp || ''}</div>
-            </div>
-          `).join("")}
-        `;
+          ${repliesHTML}`;
         container.appendChild(div);
       });
-    }
-
-    function toggleReplyForm(index) {
-      const form = document.getElementById(`reply-form-${index}`);
-      form.style.display = form.style.display === "none" ? "block" : "none";
-    }
-
-    function addReply(index) {
-      const name = document.getElementById(`reply-name-${index}`).value.trim() || "Anonymous";
-      const msg = document.getElementById(`reply-msg-${index}`).value.trim();
-      if (!msg) return;
-      const entries = JSON.parse(localStorage.getItem("hearEntries") || "[]");
-      entries[index].replies.push({ name, msg, timestamp: formatDate(new Date()) });
-      localStorage.setItem("hearEntries", JSON.stringify(entries));
-      renderEntries();
     }
 
     document.addEventListener("DOMContentLoaded", renderEntries);

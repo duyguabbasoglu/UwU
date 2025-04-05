@@ -232,17 +232,22 @@
     }
 
     function renderScores() {
-      const scores = JSON.parse(localStorage.getItem("monawareHighScores") || "[]");
-      const container = document.getElementById("highscores");
-      const entries = scores.slice(0, 10).map(entry => `
-        <div class="score-entry">
-        <span>${entry.score} puan</span> – ${entry.note}<br>
-        ✅ ${entry.correct || 0} | ❌ ${entry.wrong || 0}<br>
-        <small>${entry.time}</small>
+  const scores = JSON.parse(localStorage.getItem("monawareHighScores") || "[]");
+
+  // 🔥 Puana göre azalan şekilde sırala
+  scores.sort((a, b) => b.score - a.score);
+
+  const container = document.getElementById("highscores");
+  const entries = scores.slice(0, 10).map(entry => `
+    <div class="score-entry">
+      <span>${entry.score} puan</span> – ${entry.note}<br>
+      ✅ ${entry.correct || 0} | ❌ ${entry.wrong || 0}<br>
+      <small>${entry.time}</small>
     </div>
-    `);
-      container.innerHTML = "<h2>High Scores 💫</h2>" + entries.join("");
-    }
+  `);
+  container.innerHTML = "<h2>High Scores 💫</h2>" + entries.join("");
+}
+
 
     document.addEventListener("DOMContentLoaded", renderScores);
   </script>
