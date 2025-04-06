@@ -308,3 +308,55 @@ function cekilisYap() {
   const rastgele = mesajlar[Math.floor(Math.random() * mesajlar.length)];
   document.getElementById("cekilisSonucu").innerText = rastgele;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const canvas = document.createElement('canvas');
+  canvas.id = 'cursorCanvas';
+  canvas.style = 'position:fixed; top:0; left:0; pointer-events:none; z-index:999999;';
+  document.body.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
+  const imagesSrc = ['./images/1.png', './images/2.png'];
+  const images = [];
+
+  imagesSrc.forEach(src => {
+    const img = new Image();
+    img.src = src;
+    images.push(img);
+  });
+
+  const particles = [];
+
+  window.addEventListener('mousemove', (e) => {
+    const image = images[Math.floor(Math.random() * images.length)];
+    particles.push({
+      x: e.clientX,
+      y: e.clientY,
+      size: 16,
+      image: image,
+      life: 40
+    });
+  });
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach((p, i) => {
+      ctx.globalAlpha = p.life / 40;
+      ctx.drawImage(p.image, p.x, p.y, p.size, p.size);
+      p.y += 1;
+      p.life--;
+      if (p.life <= 0) particles.splice(i, 1);
+    });
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+});
