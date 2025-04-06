@@ -37,10 +37,10 @@ p, button, .main {
   object-fit: cover;
 }
 .uwu-desc {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2)),url('./images/lofi1.jpg');
   width: 350px;
   overflow-y: auto;
   scrollbar-width: none;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2)), url("./images/hellobg.jpeg");
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
@@ -65,17 +65,16 @@ p, button, .main {
 }
 
 .aboutme-box {
-  background-color: #fbe9f5;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2)),url('./images/lofi2.webp');
+  background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2)), url("./images/hellobg.jpeg");
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
   font-family: 'Patrick Hand', cursive;
   font-size: 1.1em;
-  color: #4c288d;
   width: fit-content;
-  margin: 20px auto;
-  color: #ffffff;
+  font-weight: bold;
+  margin: 19px auto;
+  color: #380d95;
   background-size: cover;
   background-position: center;
   margin-right: 130px;
@@ -316,4 +315,71 @@ p, button, .main {
 
 .bubble {
   width: 40px;
+}
+
+@media only screen and (max-width: 768px) {
+
+  body, html {
+    overflow-x: hidden;
+  }
+
+  #cursorCanvas {
+    display: none;
+  }
+
+  .navbar, .navbar div, #uwu-desc, #terminalText {
+    width: 90% !important;
+    font-size: 14px !important;
+    padding: 10px !important;
+  }
+
+  #gunlukKutusu, #spotifyBox, #filmOnerisi, #cekilisSonucu, .gunluk-card {
+    width: 90% !important;
+    margin: 10px auto !important;
+    padding: 12px !important;
+  }
+
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .navbar div {
+    margin: 5px 0;
+  }
+
+  .uwu-logo img, .uwu-logo {
+    width: 80px !important;
+    height: auto !important;
+  }
+
+  .profile-photo {
+    width: 100px !important;
+    height: 100px !important;
+    margin-top: 10px !important;
+  }
+
+  #terminalText {
+    height: auto !important;
+    overflow-y: auto !important;
+  }
+
+  .gunluk-msg, .gunluk-date, #visitormesg {
+    font-size: 13px !important;
+  }
+
+  .responsive-container, .responsive-container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  .responsive-container > div {
+    margin-bottom: 10px !important;
+  }
 }
