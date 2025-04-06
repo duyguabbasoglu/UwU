@@ -297,8 +297,6 @@ p, button, .main {
   color: #230c5b;
 }
 
-#filmbg {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2)), url('./images/filmbg.jpeg');
-  background-size: cover;
-  background-position: center;
+.bubble {
+  width: 40px;
 }

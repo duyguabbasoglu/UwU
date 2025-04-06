@@ -59,41 +59,90 @@ document.addEventListener("DOMContentLoaded", () => {
           "link": "https://letterboxd.com/film/hamilton-2020/"
         },
         {
-          "name": "Inception",
-          "link": "https://letterboxd.com/film/inception/"
+          "name": "Spirited Away",
+          "link": "https://letterboxd.com/film/spirited-away/"
         },
         {
-          "name": "Fight Club",
-          "link": "https://letterboxd.com/film/fight-club/"
+          "name": "The Iron Claw",
+          "link": "https://letterboxd.com/film/the-iron-claw-2023/"
         },
         {
-          "name": "Interstellar",
-          "link": "https://letterboxd.com/film/interstellar/"
+          "name": "Magnolia",
+          "link": "https://letterboxd.com/film/magnolia/"
         },
         {
-          "name": "Pulp Fiction",
-          "link": "https://letterboxd.com/film/pulp-fiction/"
+          "name": "Miracle in Cell No. 7",
+          "link": "https://letterboxd.com/film/miracle-in-cell-no-7/"
         },
         {
-          "name": "Parasite 2019",
-          "link": "https://letterboxd.com/film/parasite-2019/"
+          "name": "BoJack Horseman",
+          "link": "https://letterboxd.com/film/bojack-horseman-christmas-special-sabrinas/"
         },
         {
-          "name": "Amelie",
-          "link": "https://letterboxd.com/film/amelie/"
+          "name": "The Skin I Live In",
+          "link": "https://letterboxd.com/film/the-skin-i-live-in/"
         },
         {
-          "name": "La La Land",
-          "link": "https://letterboxd.com/film/la-la-land/"
+          "name": "Freedom Writers",
+          "link": "https://letterboxd.com/film/freedom-writers/"
         },
         {
-          "name": "Moonlight",
-          "link": "https://letterboxd.com/film/moonlight-2016/"
+          "name": "Grave of the Fireflies",
+          "link": "https://letterboxd.com/film/grave-of-the-fireflies/"
         },
         {
-          "name": "The Father",
-          "link": "https://letterboxd.com/film/the-father-2020/"
+          "name": "Prayers for Bobby",
+          "link": "https://letterboxd.com/film/prayers-for-bobby/"
         },
+        {
+          "name": "Detachment",
+          "link": "https://letterboxd.com/film/detachment/"
+        },
+        {
+          "name": "Empire of the Sun",
+          "link": "https://letterboxd.com/film/empire-of-the-sun/"
+        },
+        {
+          "name": "Tenet",
+          "link": "https://letterboxd.com/film/tenet/"
+        },
+        {
+          "name": "There Will Be Blood",
+          "link": "https://letterboxd.com/film/there-will-be-blood/"
+        },
+        {
+          "name": "Girl, Interrupted",
+          "link": "https://letterboxd.com/film/girl-interrupted/"
+        },
+        {
+          "name": "The Usual Suspects",
+          "link": "https://letterboxd.com/film/the-usual-suspects/"
+        },
+        {
+          "name": "Full Metal Jacket",
+          "link": "https://letterboxd.com/film/full-metal-jacket/"
+        },
+        {
+          "name": "Born on the Fourth of July",
+          "link": "https://letterboxd.com/film/born-on-the-fourth-of-july/"
+        },
+        {
+          "name": "Liar Liar",
+          "link": "https://letterboxd.com/film/liar-liar/"
+        },
+        {
+          "name": "Big Fish",
+          "link": "https://letterboxd.com/film/big-fish/"
+        },
+        {
+          "name": "Seven Samurai",
+          "link": "https://letterboxd.com/film/seven-samurai/"
+        },
+        {
+          "name": "Lord of War",
+          "link": "https://letterboxd.com/film/lord-of-war/"
+        },
+        //burda kaldim
         {
           "name": "Whiplash",
           "link": "https://letterboxd.com/film/whiplash-2014/"
@@ -103,8 +152,8 @@ document.addEventListener("DOMContentLoaded", () => {
           "link": "https://letterboxd.com/film/american-honey/"
         },
         {
-          "name": "The Grand Budapest Hotel",
-          "link": "https://letterboxd.com/film/the-grand-budapest-hotel/"
+          "name": "Sofra Sırları",
+          "link": "https://letterboxd.com/film/serial-cook/"
         },
         {
           "name": "Her",
@@ -127,8 +176,8 @@ document.addEventListener("DOMContentLoaded", () => {
           "link": "https://letterboxd.com/film/call-me-by-your-name/"
         },
         {
-          "name": "Lady Bird",
-          "link": "https://letterboxd.com/film/lady-bird/"
+          "name": "Forgotten",
+          "link": "https://letterboxd.com/film/forgotten-2017/"
         },
         {
           "name": "Little Women",
@@ -139,8 +188,8 @@ document.addEventListener("DOMContentLoaded", () => {
           "link": "https://letterboxd.com/film/arrival-2016/"
         },
         {
-          "name": "The Social Network",
-          "link": "https://letterboxd.com/film/the-social-network/"
+          "name": "Cosmos",
+          "link": "https://letterboxd.com/film/cosmos-2014/"
         },
         {
           "name": "Everything Everywhere All at Once",
@@ -151,12 +200,16 @@ document.addEventListener("DOMContentLoaded", () => {
           "link": "https://letterboxd.com/film/joker-2019/"
         },
         {
-          "name": "Portrait of a Lady on Fire",
-          "link": "https://letterboxd.com/film/portrait-of-a-lady-on-fire/"
+          "name": "Sherlock: His Last Vow",
+          "link": "https://letterboxd.com/film/sherlock-his-last-vow/"
         },
         {
-          "name": "The Handmaiden",
-          "link": "https://letterboxd.com/film/the-handmaiden/"
+          "name": "The Godfather Part II",
+          "link": "https://letterboxd.com/film/the-godfather-part-ii/"
+        },
+        {
+          "name": "Perfume: The Story of a Murderer",
+          "link": "https://letterboxd.com/film/perfume-the-story-of-a-murderer/"
         }
       ];
 
@@ -165,12 +218,39 @@ document.addEventListener("DOMContentLoaded", () => {
       
     filmBox.innerHTML = `
         <a href="${film.link}" target="_blank" style="text-decoration:none;">
-        <div style="font-size:1.2em; color:#3d2f2c; background:#fdf7f1; padding:14px 20px; border-radius:12px; box-shadow:0 1px 5px rgba(0,0,0,0.05);">
+        <div style="font-size:1.2em; color:#3d2f2c; background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2)), url('./images/filmbg.jpeg'); padding:14px 20px; border-radius:12px; box-shadow:0 1px 5px rgba(0,0,0,0.05);">
         🎬 ${film.name}
         </div>
         </a>
       `;
 
+      const terminalLines = [
+        "Booting UWU...",
+        "Loading pixel clouds ☁️",
+        `Welcome back, dreamer_${Math.floor(Math.random() * 900 + 100)}`,
+        `This is your ${Math.floor(Math.random() * 10 + 1)}th visit`,
+        `📟  ${Math.floor(Math.random() * 500 + 100)} digital souls wandered here`,
+        "",
+        "✨ Enter a nickname or continue as anonymous ✨"
+      ];
+      
+      let currentLine = 0;
+      const textElem = document.getElementById("terminalText");
+      function typeLine() {
+        if (currentLine >= terminalLines.length) return;
+        textElem.innerHTML += terminalLines[currentLine] + "\n";
+        currentLine++;
+        setTimeout(typeLine, 900);
+      }
+      typeLine();
+      
+      function startBlog() {
+        const nick = document.getElementById("nickInput").value;
+        const nameToUse = nick || `dreamer_${Math.floor(Math.random() * 1000)}`;
+        alert(`hello ${nameToUse}, your dream starts now.`);
+        document.querySelector(".welcome-terminal").style.display = "none";
+
+      }
   });
 
 
