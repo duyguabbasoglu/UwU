@@ -17,33 +17,44 @@
   </div>
 
   <div class="pc-frame">
-    <div class="header">
-      <img src="./images/uwulogo.png" class="uwu-logo" />
-      <div class="profile-container">
-        <img src="./images/uwupp.png" class="profile-pic" />
-        <span id="nickname">DyliaX</span>
+    <div class="top-bar">
+      <div class="logo-container">
+        <img src="./images/uwulogo.png" class="uwu-logo" />
+      </div>
+      <div class="navbar-container">
+        <ul class="navbar">
+          <li><a href="./hearmeout.html">hear me out</a></li>
+          <li><a href="./cekilis.html">çekiliş</a></li>
+          <li><a href="./zk.html">zaman kapsülü</a></li>
+          <li><a href="./minigame.html">minigame</a></li>
+        </ul>
       </div>
     </div>
 
-    <p class="uwu-desc">✧ here my blog, feel free to give feedback, best experience on pc ✧</p>
+    <div class="profile-bar">
+      <div class="profile-left">
+        <img src="./images/uwupp.png" class="profile-pic" />
+        <span id="nickname">by DyliaX</span>
+      </div>
+      <div class="profile-right">
+        <div class="uwu-desc">
+          ✨ welcome to my blog, best experience on pc ✨
+        </div>
+        
+        <div class="aboutme-box">
+          about me: bu blogda bazen saçmalıyorum ama bazen de çok haklıyım.
+        </div>
+      </div>
+    </div>
 
-    <div class="navbar">
-      <ul>
-        <li><a href="./hearmeout.html">hear me out</a></li>
-        <li><a href="./cekilis.html">çekiliş</a></li>
-        <li><a href="./zk.html">zaman kapsülü</a></li>
-        <li><a href="./minigame.html">minigame</a></li>
-      </ul>
+    <div id="visitor">
+      <p id="visitormesg"></p>
     </div>
 
     <div class="main">
-      <div id="visitor">
-        <p id="visitormesg"></p>
-      </div>
-
       <div class="block-row">
         <div class="block" onclick="duyguBari()">
-          <h2>Duygu Barı</h2>
+          <h2>Our Story 🧸</h2>
           <p>Bugünkü ruh halini seç ve blog yazıları arasından öneri al!</p>
         </div>
 
@@ -55,7 +66,7 @@
 
       <div class="block-row">
         <div class="block gunluk-block">
-          <h2>Duygu’nun Günlüğü</h2>
+          <h2>🪁 Duygu’nun Günlüğü</h2>
           <div id="gunlukKutusu"></div>
         </div>
       </div>
@@ -67,15 +78,15 @@
         </div>
 
         <div class="block" onclick="aiFali()">
-          <h2>AI Falı</h2>
-          <p id="falMesaji">😉</p>
+          <h2>🔮</h2>
+          <p id="falMesaji"></p>
         </div>
       </div>
 
       <div class="keyboard">
         <img src="./images/uwukeyboard.webp" />
       </div>
-    </div> 
-  </div>  
-  </body>
+    </div>
+  </div>
+</body>
 </html>

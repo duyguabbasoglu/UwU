@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const gunlukNotlari = [
-      { date: "06.04.2025", message: "iyi geldi 🍂" },
+      { date: "06.04.2025", message: "     insanlara gosterdigim saygi ve dolayisiyla toleransin bana gosterilmedigini ustune usluk ciddi derecede kullanildigimi farkettim. biraz kendime kizdim duygularimi sonuna kadar disa vurdum sonra sakinlestim iyi geldi ve kalkip oncelikle kendim icin yasamaya basladim 🍂" },
     ];
   
     const container = document.getElementById("gunlukKutusu");
@@ -189,6 +189,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("falMesaji").innerText = rastgele;
       }
       
-      
+      window.aiFali = aiFali;
   });
   

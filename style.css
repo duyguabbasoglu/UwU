@@ -1,6 +1,5 @@
 body {
   font-family: 'Patrick Hand', 'Kalam', cursive;
-  background: #d9d9d9;
   color: white;
   margin: 0;
   padding: 0;
@@ -24,107 +23,129 @@ p, button, .main {
   top: 0;
   left: 0;
   width: 100%;
-  overflow: hidden;
+  height: 100%;
   z-index: -1;
 }
 
 .video-container video {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
-.pc-frame {
-  width: 95%;
-  max-width: 800px;
-  background: rgba(255, 255, 255, 0.92);
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-  position: relative;
-  margin: 30px 0;
+.uwu-desc, .aboutme-box {
+  background-color: rgba(255, 227, 240, 0.9);
+  padding: 15px;
+  border-radius: 25px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  font-size: 1.2em;
+  width: fit-content;
+  margin: 10px auto;
+  font-family: 'Kalam', cursive;
 }
 
-.header {
+.aboutme-box {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.1em;
+  color: #4c288d;
+  background-image: url('./images/aboutmebg.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.top-bar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: 15px 30px;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 10px 20px;
+  border-radius: 10px;
 }
 
 .uwu-logo {
-  width: 150px;
-  height: auto;
-  position: relative;
-  left: 50px;
+  height: 200px;
+
+}
+.uwu-logo:hover {
+  scale: 1.3;
+  
 }
 
-.profile-container {
+.navbar-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  right: 50px;
-}
-
-.profile-pic {
-  width: 130px;
-  height: 130px;
-  border: 4px solid #b4ddc6;
-  border-radius: 12px;
-}
-
-#nickname {
-  font-size: 16px;
-  font-weight: bold;
-  color: #4e1861;
-  background: #ffe3f0;
-  padding: 6px 14px;
-  border-radius: 10px;
-  margin-top: 10px;
-}
-
-.uwu-desc {
-  margin: 0 auto 10px auto;
-  font-size: 1em;
-  color: #00507b;
-  padding: 8px 20px;
-  width: fit-content;
-  border-radius: 12px;
-  box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  flex: 1;
+  justify-content: center;
+  margin-left: 70px;
 }
 
 .navbar {
-  width: 100%;
-  text-align: center;
-  margin: 20px 0;
-}
-
-.navbar ul {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
   list-style: none;
-  padding: 12px;
-  background-color: rgba(175, 64, 155, 0.92);
-  border-radius: 10px;
-  width: 90%;
-  margin: auto;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
 }
 
-.navbar ul li a {
+.navbar li a {
   text-decoration: none;
-  color: white;
   font-weight: bold;
-  font-size: 20px;
-  padding: 10px 16px;
-  border-radius: 5px;
-  transition: all 0.3s ease;
+  font-size: 18px;
 }
 
-.navbar ul li a:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+.profile-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 20px;
+}
+
+.profile-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.profile-pic {
+  margin-left: 30px;
+  width: 130px; /* Increased profile pic size */
+  height: 130px;
+  border-radius: 50%;
+  border: 4px solid #b4ddc6;
+  object-fit: cover;
+}
+
+#nickname {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4e1861;
+  background: #ffe3f0;
+  padding: 8px 16px;
+  border-radius: 10px;
+}
+
+.profile-right {
+  text-align: left;
+  max-width: 60%;
+}
+
+.blog-desc {
+  font-family: 'Kalam', cursive;
+  font-size: 1.1em;
+  text-align: center;
+  color: #6b4b8b;
+  font-style: italic;
+}
+
+.aboutme-box {
+  background-color: #fbe9f5;
+  padding: 20px;
+  border-radius: 25px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.1em;
+  color: #4c288d;
+  width: fit-content;
+  margin: 10px auto;
 }
 
 .main {
@@ -155,12 +176,12 @@ p, button, .main {
   transition: all 0.3s ease;
   cursor: pointer;
 }
+
 .gunluk-block {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
 }
-
 
 .block:hover {
   transform: translateY(-6px);
@@ -174,20 +195,6 @@ p, button, .main {
   color: #8b2756;
 }
 
-.keyboard {
-  display: none;
-}
-
-#visitormesg {
-  font-size: 18px;
-  font-style: italic;
-  padding: 10px 20px;
-  margin-bottom: 20px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #452952;
-}
 #gunlukKutusu {
   position: relative;
   display: flex;
@@ -200,9 +207,7 @@ p, button, .main {
 }
 
 .gunluk-card {
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2)),
-    url('./images/paper.jpg');
+  background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2)), url('./images/paper.jpg');
   border-radius: 12px;
   padding: 12px 16px 24px 16px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
@@ -213,14 +218,10 @@ p, button, .main {
   text-align: left;
   line-height: 26px;
   transition: 0.3s;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  overflow: hidden;
   min-height: 50px;
   white-space: pre-wrap;
+  max-height: 150px;
 }
-
-
 
 .gunluk-date {
   position: absolute;
@@ -235,25 +236,28 @@ p, button, .main {
   z-index: 2;
 }
 
-
 #gunlukKutusu::-webkit-scrollbar {
   width: 6px;
 }
+
 #gunlukKutusu::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
 
+.keyboard {
+  display: none;
+}
 
-
-@media screen and (max-width: 900px) {
-  .profile-container {
-    position: relative;
-    right: 0;
-    top: 0;
-  }
-
-  .block-row {
-    flex-direction: column;
-    align-items: center;
-  }
+#visitormesg {
+  font-size: 18px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #452952;
+  background: white;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 10px;
 }
