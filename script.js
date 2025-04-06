@@ -171,24 +171,64 @@ document.addEventListener("DOMContentLoaded", () => {
         </a>
       `;
 
-      function aiFali() {
-        const kehanetler = [
-          "Bugün gökten tavşan düşebilir, dikkatli ol!",
-          "Bir kitap sana kendini açıklamaya çalışacak… dinle.",
-          "Biri sana sütlü kahve ısmarlayacak ama gizli bir anlamı olacak.",
-          "Cüzdanını açtığında eski bir anı fısıldayacak.",
-          "Bugün biri sana 'aynen' diyecek, ama aslında seni anlamıyor olacak.",
-          "Kendi kendine konuşurken biri seni duyacak ve hak verecek.",
-          "Evren sana mor bir çorapla mesaj yollayacak.",
-          "Bir şarkı seni ifşa edecek, ama sen cool davranacaksın.",
-          "Google'da ne aradığını unuttuğun bir gün olacak. O gün bugün.",
-          "Biri sana rastgele 'bugün çok güzelsin' diyecek. Şaşırma."
-        ];
-      
-        const rastgele = kehanetler[Math.floor(Math.random() * kehanetler.length)];
-        document.getElementById("falMesaji").innerText = rastgele;
-      }
-      
-      window.aiFali = aiFali;
   });
+
+
+  function cekilisYap() {
+    const mesajlar = [
+      "exine yaz :) şakaydı sakın ‼️",
+      "roblox için eylem yap 💀",
+      "kütüphanede enes batur youtube budur diye bağır 🥳",
+      "yola atla ve ilk gördüğüne evlilik teklifi eyle",
+      "diplomanı denize at (zaten yok)",
+      "ropdöşambırla görüntülü konuş UwU",
+      "sufle yak 😋",
+      "mustafa sarıgülle görüntülü konuş (opsiyonel)",
+      "admine yazman gerekiyomuş 🙃",
+      "devrimcilere git ve teufelslied çal :)",
+      "beni beni bihterini diye çığlık at",
+      "aylardır ertelediğin o spora git (gitmicen dimi?)",
+      "",
+      "bugün onunla uyanmadın ama çay bardağında onun yüzü yansıdı dimi",
+      "ellerini tutmadım ama elim hâlâ terli senin yüzünden",
+      "seslenmiyorum ama dinliyorsan yaz bi nokta koy",
+      "beni sev ama gösterme çünkü hiç yemedim gibi yapmam lazım 📉",
+      "hiç tanımadığın biri seni hatırlatıyor o da mı manyak bilmiyorum",
+      "aşık olmayı unuttum ama spotify algoritmam seni unutmamış",
+      "içimde bir ses var ama o da senden bıkmış gibi susuyo",
+      "beni unuttuysan bari storyme bak bi zahmet",
+      "senin adını duymak bile midemi bulandırmıyor artık bu mu iyileşmek",
+        "hanene ay doğuyor (kesinlikle biscolatadan çalmadım :))",
+        "kocaman bi kısmetin var (kesinlikle biscolatadan çalmadım :))",
+        "filmlerdeki gibi bi aşk yaşayacaksın (kesinlikle biscolatadan çalmadım :))",
+        "üç vakte kadar ağzın kulaklarında (kesinlikle biscolatadan çalmadım :))",
+        "onunla yağmurlu bi günde tanışacaksın (kesinlikle biscolatadan çalmadım :))",
+        "seni düşünen biri var (kesinlikle biscolatadan çalmadım :))",
+        "beside yatıran bir aşka yelken açacaksın (kesinlikle biscolatadan çalmadım :))",
+        "romantik bi gün geçireceksin (kesinlikle biscolatadan çalmadım :))",
+        "sevdiğin kişi sana ulaşacak (kesinlikle biscolatadan çalmadım :))",
+        "aniden mesaj seni vuracak (kesinlikle biscolatadan çalmadım :))",
+        "üç vakte kadar yollar sizin (kesinlikle biscolatadan çalmadım :))",
+        "bugün çok güzel olacaksın (kesinlikle biscolatadan çalmadım :))",
+        "aşk bi anda kapını çalacak (kesinlikle biscolatadan çalmadım :))",
+        "gözler seni bi yolculuğa çıkaracak (kesinlikle biscolatadan çalmadım :))",
+        "o sana bakacak sen evrene akacaksın (kesinlikle biscolatadan çalmadım :))",
+        "yüreğin hop etmiş (kesinlikle biscolatadan çalmadım :))",
+        "terfi geliyorum demez hazır ol (kesinlikle biscolatadan çalmadım :))",
+        "hanede mutluluk var (kesinlikle biscolatadan çalmadım :))",
+        "aradığın prensle tanışacaksın (kesinlikle biscolatadan çalmadım :))",
+        "seviliyorsun seviyorsun (kesinlikle biscolatadan çalmadım :))",
+        "kalbinin anahtarı sahibini bulacak (kesinlikle biscolatadan çalmadım :))",
+        "iki vakte kadar romantik bi siparişin var (kesinlikle biscolatadan çalmadım :))",
+        "sürpriz bi hediye yolda (kesinlikle biscolatadan çalmadım :))",
+        "kısmetin kanat takmış sana geliyor (kesinlikle biscolatadan çalmadım :))",
+        "onunla söz gününüzü konuşacaksınız (kesinlikle biscolatadan çalmadım :))",
+        "kısa ama unutulmaz bir anı yaşayacaksın (kesinlikle biscolatadan çalmadım :))",
+        "ufak dünyalardan büyük kalpler doğacak (kesinlikle biscolatadan çalmadım :))",
+        "uzun bi yolculuk başlıyor (kesinlikle biscolatadan çalmadım :))",
+        "romantik bi yere biletin var (kesinlikle biscolatadan çalmadım :))",
+    ];
   
+    const rastgele = mesajlar[Math.floor(Math.random() * mesajlar.length)];
+    document.getElementById("cekilisSonucu").innerText = rastgele;
+  }

@@ -24,7 +24,7 @@
       <div class="navbar-container">
         <ul class="navbar">
           <li><a href="./hearmeout.html">hear me out</a></li>
-          <li><a href="./cekilis.html">çekiliş</a></li>
+          <li><a href="./cekilis.html">blog</a></li>
           <li><a href="./zk.html">zaman kapsülü</a></li>
           <li><a href="./minigame.html">minigame</a></li>
         </ul>
@@ -34,7 +34,7 @@
     <div class="profile-bar">
       <div class="profile-left">
         <img src="./images/uwupp.png" class="profile-pic" />
-        <span id="nickname">by DyliaX</span>
+        <img src="./images/bydyliax.png" alt="" class="bydylia-balloon">
       </div>
       <div class="profile-right">
         <div class="uwu-desc">
@@ -72,16 +72,22 @@
       </div>
       
       <div class="block-row">
-        <div class="block">
+        <div class="block" id="filmbg">
           <h2>Bugün Ne İzliyoruz 🎑</h2>
           <div id="filmOnerisi"></div>
         </div>
-
-        <div class="block" onclick="aiFali()">
-          <h2>🔮</h2>
-          <p id="falMesaji"></p>
+      
+        <div class="block" id="biscolata" onclick="cekilisYap()">
+          <h2 id="cekilisBaslik" style="cursor: pointer;">Evrenin Mesajı Var!</h2>
+          <p id="cekilisSonucu" style="margin-top: 15px; font-size: 1.1em;">TIKLA ☺️</p>
+        </div>
+        
+        <div class="block">
+          <h2>👀</h2>
+          <p id="visitormesg"></p>
         </div>
       </div>
+      ✧
 
       <div class="keyboard">
         <img src="./images/uwukeyboard.webp" />

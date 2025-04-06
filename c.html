@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Çekiliş Kutusu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Patrick Hand', cursive;
+      background-color: #e3c9b5;
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      color: #3b2f2f;
+      background-image: url('./images/cekilisbg.png');
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 80px auto;
+      background: rgba(255, 248, 240, 0.95);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #a86e5a;
+      margin-bottom: 20px;
+    }
+
+    .wheel-btn {
+      font-size: 1.2em;
+      padding: 15px 30px;
+      background: #a86e5a;
+      color: #fefaf5;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      font-family: 'Kalam', cursive;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .wheel-btn:hover {
+      transform: scale(1.05);
+      background-color: #925a48;
+    }
+
+    .result {
+      margin-top: 30px;
+      font-size: 1.3em;
+      background: #f7e2c2;
+      border-left: 5px solid #a86e5a;
+      padding: 20px;
+      border-radius: 12px;
+      animation: fadeIn 0.8s ease;
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.95em;
+      text-decoration: underline;
+      color: #a86e5a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎁 Bugünkü Mini Görevin 🎲</h1>
+    <button class="wheel-btn" onclick="drawMission()">Çekilişi Yap!</button>
+    <div class="result" id="resultBox"></div>
+    <a href="index.html" class="back-link">« Back to main page</a>
+  </div>
+
+  <script>
+    const allMissions = [
+      "Bugün birine iltifat et ✨", "Eski bir fotoğrafa bak ve gülümse 📸",
+      "Yüzünü yıkayıp aynaya bak ve bir şey söyle 🪞", "En sevdiğin şarkıyı aç ve dans et 💃",
+      "Dışarı çıkıp bir nefes al 🍃", "Birine 'seni düşündüm' mesajı at 💌",
+      "Küçük bir not yaz ve sakla 📝", "Bugün aynada kendine göz kırp 😉",
+      "1 dakika gözlerini kapatıp sadece dinle 🎧", "Sevdiğin bir sahneyi aklında canlandır 🎬",
+      "Hayalini çiz veya yaz ✍️", "Rastgele birine yardım et 🤝",
+      "Bir şeyi affetmeye çalış 💗", "5 dakika sadece sessizlikte kal 🕊",
+      "Bugün sana iyi gelen bir şeyi not al 📔", "Gelecekteki haline bir mesaj yaz 📮",
+      "Bugün kendini suçlama, sarıl içinden 🧸", "Hayali bir karakterle konuşur gibi yaz 🐇",
+      "En sevdiğin kelimeyi yaz ve süsle ✨", "Kendine bir motto uydur 💬",
+      "Bugünlük telefonu biraz uzak tut 📵", "Gözlerini kapat, 3 hayal kur 💭",
+      "Bir çiçeğe dikkatlice bak 🌸", "Yıldızlara bakarsan bir dilek tut ⭐️",
+      "İçinden geldiği gibi bir emoji çiz 😊", "Çok konuşmadan bir günü izle 🦋",
+      "Daha önce fark etmediğin bir detaya odaklan 👀", "Sesini kaydet ve dinle 🎙",
+      "Biriyle geçmiş güzel bir anını hatırla 🫶", "Kendine içten bir teşekkür et 🙏",
+      "Balkona çık, sadece rüzgarı hisset 🍃", "Bugün sadece 'yeterli'yim de ve bırak.",
+      "Bir kelime seç, onun üzerine düşün.", "Kendine ‘neden bu kadar tatlıyım’ diye sor 🧁",
+      "Bugün sadece kendin için bir şey yap", "Küçük bir mutluluğu paylaş 🎈",
+      "Bir renk seç, etrafında o rengi ara 🎨", "Bugünü sadece 'gözlem günü' ilan et 🔍"
+    ];
+
+    function drawMission() {
+      let used = JSON.parse(localStorage.getItem("usedMissions") || "[]");
+      let available = allMissions.filter(m => !used.includes(m));
+
+      if (available.length === 0) {
+        used = [];
+        available = [...allMissions];
+      }
+
+      const chosen = available[Math.floor(Math.random() * available.length)];
+      used.push(chosen);
+      localStorage.setItem("usedMissions", JSON.stringify(used));
+
+      const resultBox = document.getElementById("resultBox");
+      resultBox.textContent = chosen;
+      resultBox.style.display = "block";
+    }
+  </script>
+</body>
+</html>
