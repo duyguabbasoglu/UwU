@@ -319,18 +319,19 @@ p, button, .main {
 
 @keyframes softFade {
   0% {
-    opacity: 0;
-  }
-  50% {
     opacity: 1;
   }
-  100% {
+  50% {
     opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
 .aboutme-box {
-  animation: softFade 3s ease-in-out forwards;
+  animation: softFade 2.5s ease-in-out 3;
+  animation-fill-mode: forwards;
 }
 
 @media only screen and (max-width: 768px) {
