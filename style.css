@@ -317,6 +317,22 @@ p, button, .main {
   width: 40px;
 }
 
+@keyframes softFade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.aboutme-box {
+  animation: softFade 3s ease-in-out forwards;
+}
+
 @media only screen and (max-width: 768px) {
 
   body, html {

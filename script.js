@@ -360,3 +360,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   animate();
 });
+
+window.addEventListener('DOMContentLoaded', () => {
+  const aboutBox = document.querySelector('.aboutme-box');
+  
+  setTimeout(() => {
+    aboutBox.classList.add('fade-out');
+  }, 1);
+});
